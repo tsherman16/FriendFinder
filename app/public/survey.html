@@ -179,6 +179,20 @@
         </footer>
     </div>
 
+    <div class="modal" tabindex="-1" role="dialog" id="matchModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h3 class="modal-title">Friend Finder: Best Match</h3>
+                </div>
+                <div class="modal-body text-center" id="modal-text"></div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script>
@@ -193,22 +207,23 @@
                     name: $("#input-name").val().trim(),
                     photo: $("#input-photoLink").val().trim(),
                     scores: [
-                        $("#Q1").val() || 3,
-                        $("#Q2").val() || 3,
-                        $("#Q3").val() || 3,
-                        $("#Q4").val() || 3,
-                        $("#Q5").val() || 3,
-                        $("#Q6").val() || 3,
-                        $("#Q7").val() || 3,
-                        $("#Q8").val() || 3,
-                        $("#Q9").val() || 3,
-                        $("#Q10").val() || 3
+                        $("#Q1").val(),
+                        $("#Q2").val(),
+                        $("#Q3").val(),
+                        $("#Q4").val(),
+                        $("#Q5").val(),
+                        $("#Q6").val(),
+                        $("#Q7").val(),
+                        $("#Q8").val(),
+                        $("#Q9").val(),
+                        $("#Q10").val()
                     ]
                 };
 
                 $.post("/api/survey", newFriend)
                     .then(function (data) {
-                        console.log("survey.html", data);
+                        $("#modal-text").append("<h2>" + data.name + "</h2>").append("<img src=" + data.photo + ">");
+                        $("#matchModal").modal();
                     });
             }
         });
