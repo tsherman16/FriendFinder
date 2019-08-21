@@ -29,7 +29,7 @@
         <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
         <div class="form-row align-items-center">
             <div class="col-auto my-1">
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <select class="custom-select mr-sm-2" id="Q1">
                     <option selected>Select an option...</option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -43,7 +43,7 @@
         <h4>Generally speaking, you rely more on your experience than your imagination.</h4>
         <div class="form-row align-items-center">
             <div class="col-auto my-1">
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <select class="custom-select mr-sm-2" id="Q2">
                     <option selected>Select an option...</option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -57,7 +57,7 @@
         <h4>You find it easy to stay relaxed and focused even when there is some pressure.</h4>
         <div class="form-row align-items-center">
             <div class="col-auto my-1">
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <select class="custom-select mr-sm-2" id="Q3">
                     <option selected>Select an option...</option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -71,7 +71,7 @@
         <h4>You rarely do something just out of sheer curiosity.</h4>
         <div class="form-row align-items-center">
             <div class="col-auto my-1">
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <select class="custom-select mr-sm-2" id="Q4">
                     <option selected>Select an option...</option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -85,7 +85,7 @@
         <h4>People can rarely upset you.</h4>
         <div class="form-row align-items-center">
             <div class="col-auto my-1">
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <select class="custom-select mr-sm-2" id="Q5">
                     <option selected>Select an option...</option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -99,7 +99,7 @@
         <h4>It is often difficult for you to relate to other people’s feelings.</h4>
         <div class="form-row align-items-center">
             <div class="col-auto my-1">
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <select class="custom-select mr-sm-2" id="Q6">
                     <option selected>Select an option...</option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -113,7 +113,7 @@
         <h4>In a discussion, truth should be more important than people’s sensitivities.</h4>
         <div class="form-row align-items-center">
             <div class="col-auto my-1">
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <select class="custom-select mr-sm-2" id="Q7">
                     <option selected>Select an option...</option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -127,7 +127,7 @@
         <h4>You rarely get carried away by fantasies and ideas.</h4>
         <div class="form-row align-items-center">
             <div class="col-auto my-1">
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <select class="custom-select mr-sm-2" id="Q8">
                     <option selected>Select an option...</option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -142,7 +142,7 @@
             not.</h4>
         <div class="form-row align-items-center">
             <div class="col-auto my-1">
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <select class="custom-select mr-sm-2" id="Q9">
                     <option selected>Select an option...</option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -156,7 +156,7 @@
         <h4>You feel more energetic after spending time with a group of people.</h4>
         <div class="form-row align-items-center">
             <div class="col-auto my-1">
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <select class="custom-select mr-sm-2" id="Q10">
                     <option selected>Select an option...</option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -171,10 +171,49 @@
                 aria-hidden="true"></i>
             Submit</button>
         <hr>
+        <footer class="footer">
+            <div class="container">
+                <p><a href="/api/survey">API Friends List</a> | <a
+                        href="https://github.com/tsherman16/FriendFinder">Github Repo</a>
+            </div>
+        </footer>
     </div>
 
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>
+
+        $("#submit").on("click", function () {
+            event.preventDefault();
+            if (($("#input-name").val() === "") || ($("#input-photoLink").val() === "")) {
+                alert("Required feild(s) blank. Fill in to move forward!")
+            } else {
+                var newFriend =
+                {
+                    name: $("#input-name").val().trim(),
+                    photo: $("#input-photoLink").val().trim(),
+                    scores: [
+                        $("#Q1").val(),
+                        $("#Q2").val(),
+                        $("#Q3").val(),
+                        $("#Q4").val(),
+                        $("#Q5").val(),
+                        $("#Q6").val(),
+                        $("#Q7").val(),
+                        $("#Q8").val(),
+                        $("#Q9").val(),
+                        $("#Q10").val()
+                    ]
+                };
+
+                $.post("/api/survey", newFriend)
+                    .then(function (data) {
+                        console.log("survey.html", data);
+                    });
+            }
+        });
+
+    </script>
 </body>
 
 </html>
