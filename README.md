@@ -14,7 +14,7 @@ Once the user is at the survey page, they are required to type their name and in
 
 --------------------------------------------------------------------------------------------------------------------------------------
 
-## **Built with**
+## **Built With**
 
 **Node Packages:**
    * [Path](https://www.npmjs.com/package/path)
@@ -25,9 +25,9 @@ Once the user is at the survey page, they are required to type their name and in
 
 ## **Github Links**
 
-* [Github-pages]()
+* [Github-pages](https://tsherman16.github.io/FriendFinder/)
 
-* [Github-repository]()
+* [Github-repository](https://github.com/tsherman16/FriendFinder)
 
 * [Heroku](https://lit-dawn-80173.herokuapp.com/)
 

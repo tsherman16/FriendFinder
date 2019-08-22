@@ -16,14 +16,14 @@ module.exports = function (app) {
             score: friendsData[0].scores.reduce((accum, value) => parseInt(accum) + parseInt(value))
         }
 
-        for (let i = 1; i < friendsData; i++) {
+        for (let i = 1; i < friendsData.length; i++) {
             var value = friendsData[i].scores.reduce(
                 (accum, value) => parseInt(accum) + parseInt(value)
             );
             var currentDiff = Math.abs(newScore - value);
             var bestDiff = Math.abs(newScore - bestMatch.score);
             
-            if (currentDiff <= bestDiff) {
+            if (currentDiff < bestDiff) {
                 bestMatch = {
                     index: i,
                     score: value
