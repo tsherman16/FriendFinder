@@ -200,7 +200,20 @@
         $("#submit").on("click", function () {
             event.preventDefault();
             if (($("#input-name").val() === "") || ($("#input-photoLink").val() === "")) {
-                alert("Required feild(s) blank. Fill in to move forward!")
+                alert("Required feild(s) blank. Fill in Name or Photo Link to move forward!")
+            } else if (
+                $("#Q1").val() === "Select an option..." ||
+                $("#Q2").val() === "Select an option..." ||
+                $("#Q3").val() === "Select an option..." ||
+                $("#Q4").val() === "Select an option..." ||
+                $("#Q5").val() === "Select an option..." ||
+                $("#Q6").val() === "Select an option..." ||
+                $("#Q7").val() === "Select an option..." ||
+                $("#Q8").val() === "Select an option..." ||
+                $("#Q9").val() === "Select an option..." ||
+                $("#Q10").val() === "Select an option..."
+            ) {
+                alert("Not all questions answered!")
             } else {
                 var newFriend =
                 {
