@@ -23,7 +23,7 @@ module.exports = function (app) {
             var currentDiff = Math.abs(newScore - value);
             var bestDiff = Math.abs(newScore - bestMatch.score);
             
-            if (currentDiff < bestDiff) {
+            if (currentDiff <= bestDiff) {
                 bestMatch = {
                     index: i,
                     score: value
